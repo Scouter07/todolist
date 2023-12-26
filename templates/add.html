@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add
+{% endblock %}
+
+{% block offcanvas %}
+    Adding a task
+{% endblock %}
+
+{% block user_list %}
+    <h2 class="display-4" style="text-align:center;">
+        <b>{{ user }}'s TODO List</b>
+    </h2>
+    <hr>
+{% endblock %}
+
+{% block main %}
+
+    <form action="/add" method="post">
+        <div style="margin:10px;"><h3>Add a task</h3></div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="tname" name="tname" placeholder="Name" type="text">
+        </div>
+        <div class="mb-3">
+            <textarea class="form-control mx-auto w-auto" style="font-size:12px;" rows="4" cols="30" id="description" name="description" placeholder="Description"></textarea>
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="date" name="date" type="text" onfocus="(this.type='date')" placeholder="mm/dd/yyyy">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="time" name="time" type="text" onfocus="(this.type='time')" placeholder="Time:">
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+
+{% endblock %}
