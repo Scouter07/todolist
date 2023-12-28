@@ -105,7 +105,7 @@ def register():
 
 @app.route("/add", methods = ["POST", "GET"])
 def add():
-    if (helpers.isloggedin() == False): # Checking if the 
+    if (helpers.isloggedin() == False):
         return redirect("/login")
     if request.method == "POST":
         name = request.form.get("tname")
@@ -125,6 +125,8 @@ def add():
 
 @app.route("/changepassword", methods = ["POST", "GET"])
 def change_password():
+    if (helpers.isloggedin() == False):
+        return redirect("/login")
     error = None
     if request.method == "POST":
         password = request.form.get("password")
