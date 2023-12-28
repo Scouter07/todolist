@@ -1,26 +1,32 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Register
+    Sign Up
 {% endblock %}
 
 {% block offcanvas %}
-    Register
+    Sign Up
 {% endblock %}
 
 {% block main %}
 
     <form action="/register" method="post">
+        <div style="margin:10px;"><h3>Sign Up</h3></div>
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
         <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text" required>
         </div>
         <div class="mb-3">
-            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password" required>
         </div>
         <div class="mb-3">
-            <input class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Confirm Password" type="password">
+            <input class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Confirm Password" type="password" required>
         </div>
-        <button class="btn btn-primary" type="submit">Register</button>
+        <button class="btn btn-primary" type="submit">Sign Up</button>
     </form>
 
 {% endblock %}

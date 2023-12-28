@@ -1,0 +1,8 @@
+# ignoring pycache file
+__pycache__/
+
+# ignoring flask session files
+flask_session/
+
+# ginoring the virtual environment
+.venv/

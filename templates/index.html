@@ -16,7 +16,104 @@
 {% endblock %}
 
 {% block main %}
+    <div class="container" style="text-align:left;">
+        <div class="row content">
+            <div class="col">
+                Name 
+            </div>
+            <div class="col">
+                Description
+            </div>
+            <div class="col">
+                Date
+            </div>
+            <div class="col">
+                Time
+            </div>
+            <div class="col">
+                Status
+            </div>
+        </div>
+        <hr>
 
-hehe
+        {% if pending %}
+            <div class="pending">
+                <h3>Pending Tasks</h3>
+                <hr>
+                <div class="content">
+                    {% for task in pending %}
+                        <div class="row">
+                            {% for i in task[1:-1] %}
+                            <div class="col">
+                                    <p>{{ i }}</p>
+                            </div>
+                            {% endfor %}
+                            <div class="col">
+                                <form action="/" method="post">
+                                    <input class="form-check-input checkbox-round" type="checkbox" name="c_task" value="{{ task[0] }}" onchange="document.getElementById('s_task1{{ task[0] }}').disabled = !this.checked;">
+                                    <button type="submit" class="btn btn-danger" id="s_task1{{ task[0] }}" disabled>Task Completed</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <hr>
+            </div>
+        {% else %}
+            <p>No pending tasks.</p>
+            <hr>
+        {% endif %}
 
+        {% if current %}
+            <h3>Current Tasks</h3>
+            <hr>
+            <div class="content">
+                {% for task in current %}
+                    <div class="row">
+                        {% for i in task[1:-1] %}
+                        <div class="col">
+                                <p>{{ i }}</p>
+                        </div>
+                        {% endfor %}
+                        <div class="col">
+                            <form action="/" method="post">
+                                <input class="form-check-input checkbox-round" type="checkbox" name="c_task" value="{{ task[0] }}" onchange="document.getElementById('s_task2{{ task[0] }}').disabled = !this.checked;">
+                                <button type="submit" class="btn btn-danger" id="s_task2{{ task[0] }}" disabled>Task Completed</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <hr>
+        {% else %}
+            <p>No current tasks.</p>
+            <hr>
+        {% endif %}
+
+        {% if upcoming %}
+            <h3>Upcoming Tasks</h3>
+            <hr>
+            <div class="content">
+                {% for task in upcoming %}
+                    <div class="row">
+                        {% for i in task[1:-1] %}
+                        <div class="col">
+                                <p>{{ i }}</p>
+                        </div>
+                        {% endfor %}
+                        <div class="col">
+                            <form action="/" method="post">
+                                <input class="form-check-input checkbox-round" type="checkbox" name="c_task" value="{{ task[0] }}" onchange="document.getElementById('s_task3{{ task[0] }}').disabled = !this.checked;">
+                                <button type="submit" class="btn btn-danger" id="s_task3{{ task[0] }}" disabled>Task Completed</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <hr>
+        {% else %}
+            <p>No upcoming tasks.</p>
+            <hr>
+        {% endif %}
+    </div>
 {% endblock %}

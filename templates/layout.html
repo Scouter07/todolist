@@ -29,12 +29,27 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
+                {% if session["user_id"] %}
+                <form style="text-align:center;" action="/">
+                    <button class="btn" type="submit"><h5>Home</h5></button>
+                </form>
                 <form style="text-align:center;" action="/add">
                     <button class="btn" type="submit"><h5>Add a task</h5></button>
+                </form>
+                <form style="text-align:center;" action="/changepassword">
+                    <button class="btn" type="submit"><h5>Change Password</h5></button>
                 </form>
                 <form style="text-align:center;" action="/logout">
                     <button class="btn" type="submit"><h5>Log Out</h5></button>
                 </form>
+                {% else %}
+                <form style="text-align:center;" action="/login">
+                    <button class="btn" type="submit"><h5>Log In</h5></button>
+                </form>
+                <form style="text-align:center;" action="/register">
+                    <button class="btn" type="submit"><h5>Sign Up</h5></button>
+                </form>
+                {% endif %}
             </div>
         </div>
 
