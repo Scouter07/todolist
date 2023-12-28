@@ -19,6 +19,7 @@ def get_db():
         g.cursor = g.db.cursor()
     return g.db, g.cursor
 
+# Closing the connection witht he database in case of abrupt stop to the program
 @app.teardown_appcontext
 def close_db(error):
     if 'db' in g:
@@ -28,16 +29,24 @@ def close_db(error):
 def index():
     if (helpers.isloggedin() == False): # Checking if there is a user logged if not returns them to login page
         return redirect("/login")
+    
+    # Accesing the cursor from flask's g object
     cursor = get_db()[1]
     if request.method == "POST":
         id = request.form.get("c_task")
-        # Removve the given task from the database as its completed
+        # Removve the given task from the database as its completed if the method is POST
         cursor.execute("DELETE from tasks WHERE id = ?", (id,))
         g.db.commit()
         pass
+    
+    # Gets the task for next 7 days and any task before todays date from the database
     day = date.today() + timedelta(days= 7)
     tasks = cursor.execute("SELECT * FROM tasks WHERE username = ? AND (date(date) <= date(?) OR date IS NULL)", (session["user_id"], day.strftime("%Y-%m-%d"))).fetchall()
+    
+    # Sorts all the tasks accordingly as the tasks bing added can be of any order
     sorted_tasks = helpers.sort_tasks(tasks)
+    
+    # Returning the sorted tasks
     return render_template("index.html", user=session["user_id"], pending=sorted_tasks[0], current=sorted_tasks[1], upcoming=sorted_tasks[2])
 
 @app.route("/login", methods = ["POST", "GET"])
