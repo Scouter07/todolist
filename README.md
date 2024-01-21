@@ -21,5 +21,5 @@ this folder contains all the static files such as images, css file, etc. It cont
 todo.db
 this is the database that contains tables neccessary for the project it contains two tables users, tasks. Users is where user and password are stored and tasks is where all the data of the task and its unique id and the user it belongs to is stored.
 
-reqquirements.txt
+requirements.txt
 It is a text file that contians all the libraries neccesary to run the web app
